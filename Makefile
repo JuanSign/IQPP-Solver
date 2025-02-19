@@ -9,10 +9,10 @@ all: compile run
 compile:
 ifeq ($(OS), Windows)
 	@if not exist bin mkdir bin
-	javac -d bin src/Main.java src/utils/State.java
+	javac -d bin src/Main.java src/utils/State.java src/structs/Piece.java
 else
 	mkdir -p bin
-	javac -d bin src/Main.java src/utils/State.java
+	javac -d bin src/Main.java src/utils/State.java src/structs/Piece.java
 endif
 
 run:
