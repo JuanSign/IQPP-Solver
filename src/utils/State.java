@@ -115,6 +115,7 @@ public class State {
 
         List<List<String>> rawPieces = new ArrayList<>();
 
+        Set<Character> ids = new HashSet<>();
         char id = '\0';
 
         for(int i = 2; i < fileContent.size(); i++){
@@ -134,6 +135,12 @@ public class State {
             if (id == curID) {
                 rawPieces.get(rawPieces.size() - 1).add(pieceLine);
             } else {
+                if(ids.contains(curID)){
+                    errors.add(String.format("ERROR - PIECES : Duplicate identifier [%c]", curID));
+                    return;
+                }else{
+                    ids.add(curID);
+                }
                 rawPieces.add(new ArrayList<>(List.of(pieceLine)));
                 id = curID;
             }
