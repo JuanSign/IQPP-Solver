@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import structs.Piece;
+
 public class State {
     private int N, M, P;
     private String S;
@@ -148,6 +150,10 @@ public class State {
 
         if(rawPieces.size() != P){
             errors.add(String.format("ERROR - PIECES : P is %d, but given %d pieces.", P, rawPieces.size()));
+        }
+
+        for(List<String> ls : rawPieces){
+            new Piece(ls);
         }
     }
 }
