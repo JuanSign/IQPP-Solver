@@ -21,6 +21,7 @@ public class Piece{
 
     private List<List<Integer>> Compress(List<String> rawPiece){
         List<List<Integer>> compressed = new ArrayList<>();
+        int trailingSpace = Integer.MAX_VALUE;
 
         for(int i = 0; i < rawPiece.size(); i++){
             compressed.add(new ArrayList<>());
@@ -52,6 +53,10 @@ public class Piece{
             if(!space){
                 compressed.get(i).add(cur);
             }
+            trailingSpace = Math.min(trailingSpace, compressed.get(i).get(0));
+        }
+        for(int i = 0; i < rawPiece.size(); i++){
+            compressed.get(i).set(0, compressed.get(i).get(0)-trailingSpace);
         }
 
         return compressed;
